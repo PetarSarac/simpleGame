@@ -256,7 +256,7 @@ export default {
           if(this.checkWin()){
             return
           }
-        }else { // If player doesn't have more avaible specialAttacks, hit opponent with normal attack
+        }else { // If player doesn't have more avaible specialAttacks, hit opponent with normal attack.
           let damage = this.calculateDmg("player") 
           this.Opponent.health -= damage
           this.log.unshift("You hit the opponent with " + damage)
