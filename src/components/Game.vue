@@ -32,8 +32,6 @@
         <el-button :disabled="gameSettings.points <= 0" icon="el-icon-plus" @click="addPoints('attack')">Attack</el-button>
         <el-button :disabled="gameSettings.points <= 0" icon="el-icon-plus" @click="addPoints('heal')">Heal</el-button>
         <el-button :disabled="gameSettings.points <= 0" icon="el-icon-plus" @click="addPoints('defense')">Defense</el-button>
-
-        
       </el-col>
     </el-row>
     <el-row>
@@ -42,19 +40,23 @@
           <el-tooltip class="item" effect="dark" :content="'Damage from 1 to ' + (Player.skills.attack / 10)" placement="top">
             <el-button :disabled="!gameSettings.isRunning" @click="attack" type="danger" plain>Attack</el-button>
           </el-tooltip>
+
           <el-badge :value="Player.specialAttacks" class="item" type="primary">
             <el-tooltip class="item" effect="dark" :content="'Damage from 10 to ' + (10 + Player.skills.attack / 10)" placement="top">
               <el-button :disabled="!gameSettings.isRunning || Player.specialAttacks <= 0" @click="specialAttack" type="danger" plain>Special Attack</el-button>
             </el-tooltip>
           </el-badge>
+
           <el-badge :value="Player.avaibleHeals" class="item" type="primary">
             <el-tooltip class="item" effect="dark" :content="'Heal for ' + (10 + Player.skills.heal / 10)" placement="top">
               <el-button :disabled="!gameSettings.isRunning || Player.avaibleHeals <= 0" @click="heal" type="success" plain>Heal</el-button>
             </el-tooltip>
           </el-badge>
+
           <el-tooltip class="item" effect="dark" :content="'20% chance for damage from 20 to ' + (20 + Player.skills.attack / 10)" placement="top">
             <el-button :disabled="!gameSettings.isRunning" @click="highRiskAttack" type="danger">Attack with high risk</el-button>
           </el-tooltip>
+
           <el-tooltip class="item" effect="dark" :content="Math.floor(1 / (Player.skills.defense / 10) * 100) + '% Chance for opponent to hit you'" placement="top">
             <el-button :disabled="!gameSettings.isRunning" @click="defense" type="info" plain>Defense</el-button>
           </el-tooltip>
@@ -67,7 +69,9 @@
     <el-row>
       <el-col :span="12" :offset="6">
         <ul>
-          <li v-for="(logg,index) in log.slice(0,10)" :key="index" :class="logg.includes('You') ? 'player-info' : 'opponent-info'">{{ logg }}</li>
+          <li v-for="(logg,index) in log.slice(0,10)" :key="index" :class="logg.includes('You') ? 'player-info' : 'opponent-info'">
+            {{ logg }}
+          </li>
         </ul>
       </el-col>
       
@@ -102,7 +106,6 @@ export default {
       },
       Opponent: {
         health: 100
-  
       },
       gameSettings:{
         points: 2,
@@ -112,9 +115,6 @@ export default {
 
       ]
     }
-  },
-  computed: {
-    
   },
   methods: {
     addPoints(type){
@@ -147,10 +147,6 @@ export default {
       }else {
         alert("You don't have more points !")
       }
-      
-
-      
-
     },
     restartGame(){
       this.log = []
